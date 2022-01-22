@@ -28,11 +28,11 @@ const FormAddPhoto = ({handleAddPhoto}) => {
     };
 
     const onSubmit = (data) => {
-        // let indexUrl = listPhoto.findIndex(item => item.url === data.url);
-        if (listPhoto.include(item => item.url === data.url)) setIsValidUrl(true);
-        // let indexTitle = listPhoto.findIndex(item => item.title === data.title);
-        if (listPhoto.include(item => item.title === data.title)) setIsValidTitle(true);
-        if (listPhoto.include(item => item.title === data.title) && listPhoto.include(item => item.url === data.url)) {
+        let indexUrl = listPhoto.findIndex(item => item.url === data.url);
+        if (indexUrl >= 0) setIsValidUrl(true);
+        let indexTitle = listPhoto.findIndex(item => item.title === data.title);
+        if (indexTitle >= 0) setIsValidTitle(true);
+        if (indexTitle < 0 && indexUrl < 0) {
             handleAddPhoto(data);
             setIsValidUrl(false);
             setIsValidTitle(false);
